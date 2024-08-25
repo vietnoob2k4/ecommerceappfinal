@@ -44,7 +44,7 @@ const handleAddAddress = () => {
         postalCode
     }
 
-    axios.post("http://172.17.161.213:8000/addresses",{userId,address}).then((response) => {
+    axios.post("http://192.168.1.184:8000/addresses",{userId,address}).then((response) => {
         Alert.alert("Success","Addresses added successfully");
         setName("");
         setMobileNo("");

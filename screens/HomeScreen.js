@@ -229,7 +229,7 @@ console.log (selectedAddress)
   const fetchAddresses = async () => {
     try {
       const response = await axios.get(
-        `http://172.17.161.213:8000/addresses/${userId}`
+        `http://192.168.1.184:8000/addresses/${userId}`
       );
       const { addresses } = response.data;
       setAddresses(addresses);
@@ -494,23 +494,29 @@ console.log (selectedAddress)
           </View>
 
           <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              flexWrap: "wrap",
-              justifyContent: "space-between",
-            }}
-          >
-            {products
-              ?.filter((item) => item.category === category)
-              .map((item, index) => (
-                <ProductItem
-                  item={item}
-                  key={index}
-                  style={{ width: "48%", marginBottom: 10 }}
-                />
-              ))}
-          </View>
+  style={{
+    flexDirection: "row",
+    alignItems: "center",
+    flexWrap: "wrap",
+    justifyContent: "center", // Thêm khoảng cách giữa các phần tử
+    
+  }}
+>
+  {products
+    ?.filter((item) => item.category === category)
+    .map((item, index) => (
+      <ProductItem
+        item={item}
+        key={index}
+        style={{
+          width: "48%", // Chiều rộng mỗi sản phẩm là 48% để hiển thị 2 sản phẩm mỗi hàng
+          marginBottom: 5,
+          
+        }}
+      />
+    ))}
+</View>
+
         </ScrollView>
       </SafeAreaView>
 

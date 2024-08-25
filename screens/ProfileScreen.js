@@ -45,7 +45,7 @@ import {
       const fetchUserProfile = async () => {
         try {
           const response = await axios.get(
-            `http://172.17.161.213:8000/profile/${userId}`
+            `http://192.168.1.184:8000/profile/${userId}`
           );
           const { user } = response.data;
           setUser(user);
@@ -68,7 +68,7 @@ import {
       const fetchOrders = async () => {
         try {
           const response = await axios.get(
-            `http://172.17.161.213:8000/orders/${userId}`
+            `http://192.168.1.184:8000/orders/${userId}`
           );
           const orders = response.data.orders;
           setOrders(orders);

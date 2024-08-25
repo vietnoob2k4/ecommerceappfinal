@@ -34,7 +34,7 @@ import {
       
           // send a POST  request to the backend API to register the user
           axios
-            .post("http://172.17.161.213:8000/register", user)
+            .post("http://192.168.1.184:8000/register", user)
             .then((response) => {
               console.log(response);
               Alert.alert(
@@ -61,16 +61,13 @@ import {
     return (
       <ScrollView>
   <SafeAreaView style={{flex:1, backgroundColor:"white", alignItems:"center"}}>
-        <View>
-          <Image style={{ width: 300, height: 50, marginTop: 100}} source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTime8WBi0okOevaVbgARHAEwTcxGkNTXifJw&s"}}/>
-  
-        </View>
+        
         <KeyboardAvoidingView>
-          <View style={{alignItems: 'center'}}>
-              <Text style={{ fontSize: 17, fontWeight:"bold",marginTop:12}}>Đăng ky vào tài khoản</Text>
+          <View style={{alignItems: 'center',marginTop:200,}} >
+              <Text style={{ fontSize: 25, fontWeight:"bold",marginTop:12}}>Đăng ký </Text>
           </View>
           <View style={{marginTop: 30}}>
-          <View style={{flexDirection:'row', alignItems:'center', gap:5,backgroundColor:"#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 30}}>
+          <View style={{flexDirection:'row', alignItems:'center', gap:5,backgroundColor:"#D0D0D0", paddingVertical: 5, marginTop: 30}}>
               <Ionicons name='person' size={24}  style={{ marginLeft: 8}} />
               <TextInput
                 value={name}
@@ -86,7 +83,7 @@ import {
           </View>
           </View>
           <View style={{marginTop: 10}}>
-          <View style={{flexDirection:'row', alignItems:'center', gap:5,backgroundColor:"#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 10}}>
+          <View style={{flexDirection:'row', alignItems:'center', gap:5,backgroundColor:"#D0D0D0", paddingVertical: 5, marginTop: 10}}>
               <MaterialIcons name="email" size={24}  style={{ marginLeft: 8}} />
               <TextInput
                 value={email}
@@ -102,7 +99,7 @@ import {
           </View>
           </View>
           <View style={{marginTop: 10}}>
-          <View style={{flexDirection:'row', alignItems:'center', gap:5,backgroundColor:"#D0D0D0", paddingVertical: 5, borderRadius: 5, marginTop: 10}}>
+          <View style={{flexDirection:'row', alignItems:'center', gap:5,backgroundColor:"#D0D0D0", paddingVertical: 5, marginTop: 10}}>
               <AntDesign name="lock1" size={24}  style={{ marginLeft: 8}} />
               <TextInput
                 value={password}
@@ -124,10 +121,10 @@ import {
           </View>
           <View style={{marginTop:70}}>
               <Pressable onPress={handleRegister} style={{width: 200, backgroundColor:"red", borderRadius: 6, marginLeft:'auto', marginRight:'auto', padding:15}}>
-                  <Text style={{textAlign:'center',color:"white",fontSize: 16, fontWeight:"bold"}}> Dang ky</Text>
+                  <Text style={{textAlign:'center',color:"white",fontSize: 16, fontWeight:"bold"}}> ĐĂNG KÝ</Text>
               </Pressable>
               <Pressable style={{marginTop:15}} onPress={() => navigation.navigate("Login")}>
-                  <Text style={{textAlign:'center'}}> da co tai khoan? dang nhap ngay</Text>
+                  <Text style={{textAlign:'center'}}> đã có tài khoản, đăng nhập ngay</Text>
               </Pressable>
           </View>
           <View style={{height: 100}}>

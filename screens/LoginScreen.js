@@ -22,7 +22,7 @@ const LoginScreen = () => {
           email: email,
           password: password,
         }
-        axios.post("http://172.17.161.213:8000/login",user).then((response) => {
+        axios.post("http://192.168.1.184:8000/login",user).then((response) => {
           console.log(response);
           const token = response.data.token;
           AsyncStorage.setItem("authToken",token);
@@ -35,15 +35,16 @@ const LoginScreen = () => {
   return (
     
     <SafeAreaView style={{flex:1, backgroundColor:"white", alignItems:"center"}}>
+      
+      <KeyboardAvoidingView>
       <View>
-        <Image style={{ width: 300, height: 50, marginTop: 100}} source={{uri:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTime8WBi0okOevaVbgARHAEwTcxGkNTXifJw&s"}}/>
+        
 
       </View>
-      <KeyboardAvoidingView>
-        <View >
-            <Text style={{ fontSize: 17, fontWeight:"bold",marginTop:12}}>                Đăng nhập vào tài khoản</Text>
+        <View style={{marginTop:90}}>
+            <Text style={{ fontSize: 25, fontWeight:"bold",marginTop:12}}>     Đăng nhập vào tài khoản</Text>
         </View>
-        <View style={{ marginTop: 70 }}>
+        <View style={{ marginTop: 20 }}>
           <View
             style={{
               flexDirection: "row",
@@ -51,7 +52,7 @@ const LoginScreen = () => {
               gap: 5,
               backgroundColor: "#D0D0D0",
               paddingVertical: 5,
-              borderRadius: 5,
+              
               marginTop: 30,
             }}
           >
@@ -84,8 +85,8 @@ const LoginScreen = () => {
               gap: 5,
               backgroundColor: "#D0D0D0",
               paddingVertical: 5,
-              borderRadius: 5,
-              marginTop: 30,
+              
+              marginTop: 10,
             }}
           >
             <AntDesign
@@ -115,11 +116,11 @@ const LoginScreen = () => {
 
         </View>
         <View style={{marginTop:70}}>
-            <Pressable style={{width: 200, backgroundColor:"red", borderRadius: 6, marginLeft:'auto', marginRight:'auto', padding:15}}>
-                <Text style={{textAlign:'center',color:"white",fontSize: 16, fontWeight:"bold"}} onPress={handleLogin}> Dang nhap</Text>
+            <Pressable style={{width: 200, backgroundColor:"red", marginLeft:'auto', marginRight:'auto', padding:15}}>
+                <Text style={{textAlign:'center',color:"white",fontSize: 16, fontWeight:"bold"}} onPress={handleLogin}> ĐĂNG NHẬP</Text>
             </Pressable>
             <Pressable style={{marginTop:15}} onPress={() => navigation.navigate("Register")}>
-                <Text style={{textAlign:'center'}}> ban khong co tai khoan? dang ki ngay</Text>
+                <Text style={{textAlign:'center'}}> bạn không có tài khoản ? đăng ký ngay</Text>
             </Pressable>
         </View>
       </KeyboardAvoidingView>

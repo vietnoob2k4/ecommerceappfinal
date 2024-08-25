@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, ScrollView, Pressable, ImageBackground, Dimensions, TextInput } from 'react-native';
 import React, { useState } from "react";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign ,Ionicons} from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../redux/CartReducer';
@@ -25,10 +25,14 @@ const ProductInfoScreens = () => {
 console.log(cart)
   return (
     <ScrollView style={{ marginTop: 45, flex: 1, backgroundColor: "white" }}>
+    
       <View style={{ padding: 10, backgroundColor: "red", flexDirection: 'row', alignItems: 'center' }}>
+      <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Ionicons name="arrow-back" size={24} color="black" />
+        </Pressable>
         <Pressable style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 7, gap: 10, backgroundColor: "white", borderRadius: 3, height: 38, flex: 1 }}>
           <AntDesign style={{ paddingLeft: 10 }} name="search1" size={24} color="black" />
-          <TextInput placeholder="tìm kiếm trên cellphones" />
+          <TextInput placeholder="tìm kiếm " />
         </Pressable>
       </View>
       

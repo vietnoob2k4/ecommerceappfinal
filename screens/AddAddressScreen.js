@@ -8,7 +8,7 @@ import {
   } from "react-native";
   import React, { useEffect, useContext, useState, useCallback } from "react";
   import { Feather, AntDesign } from "@expo/vector-icons";
-  import { MaterialIcons } from "@expo/vector-icons";
+  import { MaterialIcons, Ionicons } from "@expo/vector-icons";
   import { Entypo } from "@expo/vector-icons";
   import { useFocusEffect, useNavigation } from "@react-navigation/native";
   import axios from "axios";
@@ -25,7 +25,7 @@ import {
     const fetchAddresses = async () => {
       try {
         const response = await axios.get(
-          `http://172.17.161.213:8000/addresses/${userId}`
+          `http://192.168.1.184:8000/addresses/${userId}`
         );
         const { addresses } = response.data;
   
@@ -45,34 +45,21 @@ import {
       <ScrollView showsVerticalScrollIndicator={false} style={{ marginTop: 50 }}>
         <View
           style={{
-            backgroundColor: "black",
+            backgroundColor: "red",
             padding: 10,
             flexDirection: "row",
             alignItems: "center",
           }}
-        >
-          <Pressable
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              marginHorizontal: 7,
-              gap: 10,
-              backgroundColor: "white",
-              borderRadius: 3,
-              height: 38,
-              flex: 1,
-            }}
-          >
-            <AntDesign
-              style={{ paddingLeft: 10 }}
-              name="search1"
-              size={22}
-              color="black"
-            />
-            <TextInput placeholder="Search Amazon.in" />
+        >.
+        
+          
+            <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
+            <Ionicons name="arrow-back" size={24} color="black" />
+            
+            
           </Pressable>
   
-          <Feather name="mic" size={24} color="black" />
+          
         </View>
   
         <View style={{ padding: 10 }}>

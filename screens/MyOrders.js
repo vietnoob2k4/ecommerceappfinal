@@ -11,6 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { UserType } from "../UserContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Ionicons } from '@expo/vector-icons'; // Sử dụng thư viện icon Expo
 
 const MyOrders = () => {
   const { userId } = useContext(UserType);
@@ -33,7 +34,7 @@ const MyOrders = () => {
     const fetchUserProfile = async () => {
       try {
         const response = await axios.get(
-          `http://172.17.161.213:8000/profile/${userId}`
+          `http://192.168.1.184:8000/profile/${userId}`
         );
         const { user } = response.data;
         setUser(user);
@@ -59,9 +60,13 @@ const MyOrders = () => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          `http://172.17.161.213:8000/orders/${userId}`
+          `http://192.168.1.184:8000/orders/${userId}`
         );
-        const orders = response.data.orders;
+        let orders = response.data.orders;
+
+        // Sắp xếp đơn hàng từ mới tới cũ
+        orders = orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
         setOrders(orders);
         setLoading(false);
       } catch (error) {
@@ -75,6 +80,9 @@ const MyOrders = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
+        <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Ionicons name="arrow-back" size={24} color="black" />
+        </Pressable>
         <Text style={styles.headerText}>Đơn hàng của bạn</Text>
       </View>
 
@@ -83,13 +91,11 @@ const MyOrders = () => {
       ) : orders.length > 0 ? (
         orders.map((order) => (
           <View style={styles.orderContainer} key={order._id}>
-          <View>
-          <Text style={styles.orderTitle}>Đơn hàng ID: {order._id}</Text>
-          <Text style={styles.totalPrice}>Giá tổng: {order.totalPrice} VNĐ</Text> 
-          <Text style={styles.orderDate}>Ngày đặt hàng: {order.createdAt}</Text>
-
-          </View>
-           
+            <View>
+              <Text style={styles.orderTitle}>Đơn hàng ID: {order._id}</Text>
+              <Text style={styles.totalPrice}>Giá tổng: {order.totalPrice} VNĐ</Text>
+              <Text style={styles.orderDate}>Ngày đặt hàng: {order.createdAt}</Text>
+            </View>
 
             {order.products.map((product) => (
               <View style={styles.orderContent} key={product._id}>
@@ -130,9 +136,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 12,
   },
+  backButton: {
+    position: 'absolute',
+    left: 0,
+    padding: 10,
+  },
   headerText: {
     fontSize: 30,
     fontWeight: 'bold',
+    textAlign: 'center', // Đảm bảo rằng tiêu đề luôn ở giữa
   },
   loadingText: {
     textAlign: 'center',
